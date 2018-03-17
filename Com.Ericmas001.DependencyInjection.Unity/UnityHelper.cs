@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Unity;
 
 namespace Com.Ericmas001.DependencyInjection.Unity
 {
     public static class UnityHelper
     {
-        public static void RegisterTypes(IUnityContainer container, IEnumerable<IRegisteredElement> elements)
+        public static void RegisterTypes(this IRegistrant registrant, IUnityContainer container)
+        {
+            registrant.GetRegisteredTypeAssociation().RegisterTypes(container);
+        }
+        public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, IUnityContainer container)
         {
             foreach (var elem in elements)
             {
                 switch (elem)
                 {
+                    case InstanceRegisteredElement iElem:
+                    {
+                        container.RegisterInstance(iElem.Instance);
+                        break;
+                    }
                     case NamedImplementationRegisteredElement niElem:
                     {
                         container.RegisterType(niElem.RegisteredType, niElem.ImplementationType, niElem.Name);
