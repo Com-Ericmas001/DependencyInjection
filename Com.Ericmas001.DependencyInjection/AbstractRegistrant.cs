@@ -7,19 +7,24 @@ namespace Com.Ericmas001.DependencyInjection
 {
     public abstract class AbstractRegistrant : IRegistrant
     {
-        private readonly Dictionary<Type,Type> m_RegisteredTypeAssociation = new Dictionary<Type, Type>();
+        private readonly List<IRegisteredElement> m_RegisteredTypeAssociation = new List<IRegisteredElement>();
 
         protected abstract void RegisterEverything();
 
-        public IEnumerable<KeyValuePair<Type, Type>> GetRegisteredTypeAssociation()
+        public IEnumerable<IRegisteredElement> GetRegisteredTypeAssociation()
         {
             RegisterEverything();
             return m_RegisteredTypeAssociation.ToArray();
         }
-        protected void Register<TInterface,TImplementation>() 
+        protected void Register<TInterface, TImplementation>()
             where TImplementation : TInterface
         {
-            m_RegisteredTypeAssociation[typeof(TInterface)] = typeof(TImplementation);
+            m_RegisteredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)));
+        }
+        protected void Register<TInterface, TImplementation>(string name)
+            where TImplementation : TInterface
+        {
+            m_RegisteredTypeAssociation.Add(new NamedImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation), name));
         }
     }
 }

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Com.Ericmas001.DependencyInjection
 {
-    public interface IRegistrant
+    public interface IRegisteredElement
     {
-        IEnumerable<IRegisteredElement> GetRegisteredTypeAssociation();
+        Type RegisteredType { get; }
     }
 }

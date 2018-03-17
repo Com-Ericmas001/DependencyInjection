@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractRegistrant.cs" />
+    <Compile Include="NamedImplementationRegisteredElement.cs" />
+    <Compile Include="ImplementationRegisteredElement.cs" />
+    <Compile Include="IRegisteredElement.cs" />
     <Compile Include="IRegistrant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
