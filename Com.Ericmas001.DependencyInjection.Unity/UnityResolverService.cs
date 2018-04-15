@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Unity;
 
 namespace Com.Ericmas001.DependencyInjection.Unity
@@ -19,6 +15,11 @@ namespace Com.Ericmas001.DependencyInjection.Unity
         public T Resolve<T>()
         {
             return m_Container.Resolve<T>();
+        }
+
+        public object Resolve(Type t)
+        {
+            return m_Container.Resolve(t);
         }
     }
 }
