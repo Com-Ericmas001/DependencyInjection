@@ -11,6 +11,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity
         }
         public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, IUnityContainer container)
         {
+            container.RegisterInstance<IResolverService>(new UnityResolverService(container));
             foreach (var elem in elements)
             {
                 switch (elem)
