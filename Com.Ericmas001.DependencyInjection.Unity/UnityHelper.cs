@@ -21,6 +21,11 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         container.RegisterInstance(iElem.Instance);
                         break;
                     }
+                    case InstanceImplementationRegisteredElement iiElem:
+                    {
+                        container.RegisterInstance(iiElem.RegisteredType, iiElem.Instance);
+                        break;
+                    }
                     case NamedImplementationRegisteredElement niElem:
                     {
                         container.RegisterType(niElem.RegisteredType, niElem.ImplementationType, niElem.Name);
@@ -29,6 +34,11 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                     case ImplementationRegisteredElement iElem:
                     {
                         container.RegisterType(iElem.RegisteredType, iElem.ImplementationType);
+                        break;
+                    }
+                    case SimpleRegisteredElement sElem:
+                    {
+                        container.RegisterType(sElem.RegisteredType);
                         break;
                     }
                     default:

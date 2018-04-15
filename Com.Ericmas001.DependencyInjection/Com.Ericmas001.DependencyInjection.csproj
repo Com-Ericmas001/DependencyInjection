@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractRegistrant.cs" />
+    <Compile Include="InstanceImplementationRegisteredElement.cs" />
+    <Compile Include="SimpleRegisteredElement.cs" />
     <Compile Include="InstanceRegisteredElement.cs" />
     <Compile Include="IResolverService.cs" />
     <Compile Include="NamedImplementationRegisteredElement.cs" />

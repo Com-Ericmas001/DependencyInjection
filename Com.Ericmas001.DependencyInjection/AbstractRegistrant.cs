@@ -16,6 +16,10 @@ namespace Com.Ericmas001.DependencyInjection
             RegisterEverything();
             return m_RegisteredTypeAssociation.ToArray();
         }
+        protected void Register<T>()
+        {
+            m_RegisteredTypeAssociation.Add(new SimpleRegisteredElement(typeof(T)));
+        }
         protected void Register<TInterface, TImplementation>()
             where TImplementation : TInterface
         {
@@ -25,6 +29,14 @@ namespace Com.Ericmas001.DependencyInjection
             where TImplementation : TInterface
         {
             m_RegisteredTypeAssociation.Add(new NamedImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation), name));
+        }
+        protected void RegisterInstance(object obj)
+        {
+            m_RegisteredTypeAssociation.Add(new InstanceRegisteredElement(obj));
+        }
+        protected void RegisterInstance<TInterface>(TInterface obj)
+        {
+            m_RegisteredTypeAssociation.Add(new InstanceImplementationRegisteredElement(typeof(TInterface), obj));
         }
     }
 }

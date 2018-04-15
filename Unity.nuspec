@@ -15,7 +15,7 @@
         <copyright />
         <language>en</language>
         <dependencies>
-            <dependency id="Com.Ericmas001.DependencyInjection" version="0.0.4" />
+            <dependency id="Com.Ericmas001.DependencyInjection" version="0.0.5" />
             <dependency id="Unity" version="5.0.0" />
         </dependencies>
     </metadata>
