@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Com.Ericmas001.DependencyInjection.RegisteredElements;
+using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
+using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
+using Com.Ericmas001.DependencyInjection.Resolvers;
+using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 
-namespace Com.Ericmas001.DependencyInjection
+namespace Com.Ericmas001.DependencyInjection.Registrants
 {
     public abstract class AbstractRegistrant : IRegistrant
     {
@@ -13,6 +15,7 @@ namespace Com.Ericmas001.DependencyInjection
 
         public IEnumerable<IRegisteredElement> GetRegisteredTypeAssociation()
         {
+            m_RegisteredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(IResolverService), typeof(VerySimpleResolverService)));
             RegisterEverything();
             return m_RegisteredTypeAssociation.ToArray();
         }

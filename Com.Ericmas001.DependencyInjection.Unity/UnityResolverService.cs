@@ -1,4 +1,5 @@
 ﻿using System;
+using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 using Unity;
 
 namespace Com.Ericmas001.DependencyInjection.Unity

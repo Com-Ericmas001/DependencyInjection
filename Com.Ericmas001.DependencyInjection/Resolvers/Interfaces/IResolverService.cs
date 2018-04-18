@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Com.Ericmas001.DependencyInjection
+namespace Com.Ericmas001.DependencyInjection.Resolvers.Interfaces
 {
     public interface IResolverService
     {

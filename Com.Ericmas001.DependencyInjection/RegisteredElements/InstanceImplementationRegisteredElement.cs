@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
 
-namespace Com.Ericmas001.DependencyInjection
+namespace Com.Ericmas001.DependencyInjection.RegisteredElements
 {
     public class InstanceImplementationRegisteredElement : IRegisteredElement
     {

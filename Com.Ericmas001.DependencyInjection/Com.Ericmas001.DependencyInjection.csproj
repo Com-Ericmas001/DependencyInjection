@@ -41,16 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractRegistrant.cs" />
-    <Compile Include="InstanceImplementationRegisteredElement.cs" />
-    <Compile Include="SimpleRegisteredElement.cs" />
-    <Compile Include="InstanceRegisteredElement.cs" />
-    <Compile Include="IResolverService.cs" />
-    <Compile Include="NamedImplementationRegisteredElement.cs" />
-    <Compile Include="ImplementationRegisteredElement.cs" />
-    <Compile Include="IRegisteredElement.cs" />
-    <Compile Include="IRegistrant.cs" />
+    <Compile Include="Registrants\AbstractRegistrant.cs" />
+    <Compile Include="RegisteredElements\InstanceImplementationRegisteredElement.cs" />
+    <Compile Include="RegisteredElements\SimpleRegisteredElement.cs" />
+    <Compile Include="RegisteredElements\InstanceRegisteredElement.cs" />
+    <Compile Include="Resolvers\Interfaces\IResolverService.cs" />
+    <Compile Include="RegisteredElements\NamedImplementationRegisteredElement.cs" />
+    <Compile Include="RegisteredElements\ImplementationRegisteredElement.cs" />
+    <Compile Include="RegisteredElements\Interface\IRegisteredElement.cs" />
+    <Compile Include="Registrants\Interfaces\IRegistrant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resolvers\VerySimpleResolverService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
