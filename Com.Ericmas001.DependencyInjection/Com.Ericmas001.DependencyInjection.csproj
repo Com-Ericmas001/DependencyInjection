@@ -11,7 +11,7 @@
     <Description>Com.Ericmas001.DependencyInjection</Description>
     <PackageLicenseUrl>https://raw.githubusercontent.com/Com-Ericmas001/DependencyInjection/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Com-Ericmas001/DependencyInjection</PackageProjectUrl>
-    <PackageIconUrl>https://avatars2.githubusercontent.com/u/19626491</PackageIconUrl>
+    <PackageIconUrl>https://github.com/Com-Ericmas001/Common/raw/master/Resources/lib.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/Com-Ericmas001/DependencyInjection</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageReleaseNotes>Development Version</PackageReleaseNotes>
