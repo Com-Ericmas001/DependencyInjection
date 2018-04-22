@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeSymbols>True</IncludeSymbols>
+    <IncludeSource>True</IncludeSource>
   </PropertyGroup>
 
   <ItemGroup>
