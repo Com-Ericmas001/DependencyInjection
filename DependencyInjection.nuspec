@@ -16,8 +16,6 @@
         <language>en</language>
     </metadata>
     <files>
-    	<file src="Com.Ericmas001.DependencyInjection\bin\$configuration$\Com.Ericmas001.DependencyInjection.dll" target="lib\net40\" />
-    	<file src="Com.Ericmas001.DependencyInjection\bin\$configuration$\Com.Ericmas001.DependencyInjection.dll" target="lib\portable-net45+wp80+win8+wpa81\" />
-    	<file src="Com.Ericmas001.DependencyInjection\bin\$configuration$\Com.Ericmas001.DependencyInjection.dll" target="lib\portable-net40+sl5+wp80+win8+wpa81\" />
+    	<file src="Com.Ericmas001.DependencyInjection\bin\$configuration$\Com.Ericmas001.DependencyInjection.dll" target="lib\netstandard2.0\" />
   </files>
 </package>

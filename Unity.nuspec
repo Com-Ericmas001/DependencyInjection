@@ -15,11 +15,12 @@
         <copyright />
         <language>en</language>
         <dependencies>
-            <dependency id="Com.Ericmas001.DependencyInjection" version="0.1.0" />
-            <dependency id="Unity" version="5.0.0" />
+            <dependency id="Com.Ericmas001.DependencyInjection" version="0.2.0" />
+          <dependency id="Unity.Abstractions" version="3.0.0" />
+          <dependency id="Unity.Container" version="5.0.0" />
         </dependencies>
     </metadata>
     <files>
-    	<file src="Com.Ericmas001.DependencyInjection.Unity\bin\$configuration$\Com.Ericmas001.DependencyInjection.Unity.dll" target="lib\net45\" />
+    	<file src="Com.Ericmas001.DependencyInjection.Unity\bin\$configuration$\Com.Ericmas001.DependencyInjection.Unity.dll" target="lib\netstandard2.0\" />
   </files>
 </package>

@@ -2,11 +2,11 @@
 [![Build Status](https://travis-ci.org/Com-Ericmas001/DependencyInjection.svg?branch=master)](https://travis-ci.org/Com-Ericmas001/DependencyInjection)
 [![com-ericmas001 MyGet Build Status](https://www.myget.org/BuildSource/Badge/com-ericmas001?identifier=ffc33a89-4157-47d7-9cbe-70ee7d4df05a)](https://www.myget.org/)
 
-###Current Version: 0.1.1 *(2018-04-17)*
+###Current Version: 0.2.0 *(2018-04-22)*
 <table align="center" width="100%">
     <tbody>
         <tr>
-            <td rowspan>.Net</td>
+            <td rowspan>.Net<br />Standard<br />2.0</td>
             <td align="center">
             <a href="https://www.nuget.org/packages/Com.Ericmas001.DependencyInjection/" target="_blank">
             Com.Ericmas001.DependencyInjection <br />
@@ -21,7 +21,7 @@
             </td>
         </tr>
         <tr>
-            <td rowspan>.Net</td>
+            <td rowspan>.Net<br />Standard<br />2.0</td>
             <td align="center">
             <a href="https://www.nuget.org/packages/Com.Ericmas001.DependencyInjection.Unity/" target="_blank">
             Com.Ericmas001.DependencyInjection.Unity <br />
