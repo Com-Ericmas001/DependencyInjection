@@ -6,6 +6,7 @@ namespace Com.Ericmas001.DependencyInjection.RegisteredElements
     public class SimpleRegisteredElement : IRegisteredElement
     {
         public Type RegisteredType { get; set; }
+        public Func<object> Factory { get; set; }
 
         public SimpleRegisteredElement(Type registeredType)
         {

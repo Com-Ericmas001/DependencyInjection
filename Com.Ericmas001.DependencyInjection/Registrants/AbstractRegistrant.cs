@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Com.Ericmas001.DependencyInjection.RegisteredElements;
 using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
 using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
@@ -47,7 +48,22 @@ namespace Com.Ericmas001.DependencyInjection.Registrants
         protected void Register<TInterface, TImplementation>(string name)
             where TImplementation : TInterface
         {
-            m_RegisteredTypeAssociation.Add(new NamedImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation), name));
+            m_RegisteredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Name = name });
+        }
+        protected void Register<T>(Func<T> factory) 
+            where T:class
+        {
+            m_RegisteredTypeAssociation.Add(new SimpleRegisteredElement(typeof(T)){Factory = factory});
+        }
+        protected void Register<TInterface, TImplementation>(Func<TImplementation> factory)
+            where TImplementation : class, TInterface
+        {
+            m_RegisteredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Factory = factory });
+        }
+        protected void Register<TInterface, TImplementation>(string name, Func<TImplementation> factory)
+            where TImplementation : class, TInterface
+        {
+            m_RegisteredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Name = name, Factory = factory });
         }
         protected void RegisterInstance(object obj)
         {

@@ -7,6 +7,8 @@ namespace Com.Ericmas001.DependencyInjection.RegisteredElements
     {
         public Type RegisteredType { get; set; }
         public Type ImplementationType { get; set; }
+        public string Name { get; set; }
+        public Func<object> Factory { get; set; }
 
         public ImplementationRegisteredElement(Type registeredType, Type implementationType)
         {

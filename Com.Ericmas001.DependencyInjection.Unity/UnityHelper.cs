@@ -4,6 +4,7 @@ using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
 using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
 using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 using Unity;
+using Unity.Injection;
 
 namespace Com.Ericmas001.DependencyInjection.Unity
 {
@@ -29,20 +30,32 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         container.RegisterInstance(iiElem.RegisteredType, iiElem.Instance);
                         break;
                     }
-                    case NamedImplementationRegisteredElement niElem:
-                    {
-                        container.RegisterType(niElem.RegisteredType, niElem.ImplementationType, niElem.Name);
-                        break;
-                    }
                     case ImplementationRegisteredElement iElem:
                     {
-                        container.RegisterType(iElem.RegisteredType, iElem.ImplementationType);
+                        if (iElem.Factory == null)
+                        {
+                            if (string.IsNullOrEmpty(iElem.Name))
+                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType);
+                            else
+                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType, iElem.Name);
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(iElem.Name))
+                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType, new InjectionFactory(c => iElem.Factory));
+                            else
+                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType, iElem.Name, new InjectionFactory(c => iElem.Factory));
+                        }
+
                         break;
                     }
                     case SimpleRegisteredElement sElem:
                     {
-                        container.RegisterType(sElem.RegisteredType);
-                        break;
+                        if(sElem.Factory == null)
+                            container.RegisterType(sElem.RegisteredType);
+                        else
+                            container.RegisterType(sElem.RegisteredType, new InjectionFactory(c => sElem.Factory));
+                            break;
                     }
                     default:
                     {
