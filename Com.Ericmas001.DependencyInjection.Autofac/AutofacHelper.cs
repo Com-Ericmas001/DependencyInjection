@@ -19,11 +19,6 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
             {
                 switch (elem)
                 {
-                    case InstanceRegisteredElement iElem:
-                        {
-                            container.RegisterInstance(iElem.Instance);
-                            break;
-                        }
                     case InstanceImplementationRegisteredElement iiElem:
                     {
                         container.RegisterInstance(iiElem.Instance).As(iiElem.RegisteredType);
@@ -53,7 +48,7 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
                             if (sElem.Factory == null)
                                 container.RegisterType(sElem.RegisteredType);
                             else
-                                container.Register(c => sElem.Factory());
+                                container.Register(c => sElem.Factory()).As(sElem.RegisteredType);
                             break;
                         }
                     default:

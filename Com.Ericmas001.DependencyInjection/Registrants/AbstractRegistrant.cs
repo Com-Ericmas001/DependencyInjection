@@ -65,10 +65,6 @@ namespace Com.Ericmas001.DependencyInjection.Registrants
         {
             m_RegisteredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Name = name, Factory = factory });
         }
-        protected void RegisterInstance(object obj)
-        {
-            m_RegisteredTypeAssociation.Add(new InstanceRegisteredElement(obj));
-        }
         protected void RegisterInstance<TInterface>(TInterface obj)
         {
             m_RegisteredTypeAssociation.Add(new InstanceImplementationRegisteredElement(typeof(TInterface), obj));

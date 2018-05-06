@@ -20,11 +20,6 @@ namespace Com.Ericmas001.DependencyInjection.Unity
             {
                 switch (elem)
                 {
-                    case InstanceRegisteredElement iElem:
-                    {
-                        container.RegisterInstance(iElem.Instance);
-                        break;
-                    }
                     case InstanceImplementationRegisteredElement iiElem:
                     {
                         container.RegisterInstance(iiElem.RegisteredType, iiElem.Instance);
@@ -42,9 +37,9 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         else
                         {
                             if (string.IsNullOrEmpty(iElem.Name))
-                                container.RegisterType(iElem.RegisteredType, new InjectionFactory(c => iElem.Factory));
+                                container.RegisterType(iElem.RegisteredType, new InjectionFactory(c => iElem.Factory()));
                             else
-                                container.RegisterType(iElem.RegisteredType, iElem.Name, new InjectionFactory(c => iElem.Factory));
+                                container.RegisterType(iElem.RegisteredType, iElem.Name, new InjectionFactory(c => iElem.Factory()));
                         }
 
                         break;
@@ -54,7 +49,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         if(sElem.Factory == null)
                             container.RegisterType(sElem.RegisteredType);
                         else
-                            container.RegisterType(sElem.RegisteredType, new InjectionFactory(c => sElem.Factory));
+                            container.RegisterType(sElem.RegisteredType, new InjectionFactory(c => sElem.Factory()));
                             break;
                     }
                     default:
