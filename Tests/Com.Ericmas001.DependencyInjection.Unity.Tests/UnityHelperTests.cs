@@ -1,24 +1,21 @@
-﻿using System;
-using System.Linq;
-using Autofac;
-using Com.Ericmas001.DependencyInjection.Tests.Models;
+﻿using Com.Ericmas001.DependencyInjection.Tests.Models;
 using FluentAssertions;
+using Unity;
 using Xunit;
 
-namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
+namespace Com.Ericmas001.DependencyInjection.Unity.Tests
 {
-    public class AutofacHelperTests
+    public class UnityHelperTests
     {
         [Fact]
         public void TestSimpleRegister()
         {
             //Arrange
-            var container = new ContainerBuilder();
+            var container = new UnityContainer();
             new DynamicRegistrant(r => r.Register<Dummy>()).RegisterTypes(container);
-            var scope = container.Build().BeginLifetimeScope();
             
             //Act
-            var res = scope.Resolve<Dummy>();
+            var res = container.Resolve<Dummy>();
             
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -27,12 +24,11 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         public void TestImplementationRegister()
         {
             //Arrange
-            var container = new ContainerBuilder();
+            var container = new UnityContainer();
             new DynamicRegistrant(r => r.Register<IDummy, Dummy>()).RegisterTypes(container);
-            var scope = container.Build().BeginLifetimeScope();
-
+            
             //Act
-            var res = scope.Resolve<IDummy>();
+            var res = container.Resolve<IDummy>();
             
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -41,13 +37,12 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         public void TestImplementationRegisterNamed()
         {
             //Arrange
-            var container = new ContainerBuilder();
+            var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
             new DynamicRegistrant(r => r.Register<IDummy, Dummy>(DUMB_NAME)).RegisterTypes(container);
-            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = scope.ResolveNamed<IDummy>(DUMB_NAME);
+            var res = container.Resolve<IDummy>(DUMB_NAME);
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -56,14 +51,13 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         public void TestSimpleRegisterWithFactory()
         {
             //Arrange
-            var container = new ContainerBuilder();
+            var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register(CreatFunc)).RegisterTypes(container);
-            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = scope.Resolve<DummyWithName>();
+            var res = container.Resolve<DummyWithName>();
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<DummyWithName>();
@@ -73,14 +67,13 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         public void TestImplementationRegisterWithFactory()
         {
             //Arrange
-            var container = new ContainerBuilder();
+            var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(CreatFunc)).RegisterTypes(container);
-            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = scope.Resolve<IDummy>();
+            var res = container.Resolve<IDummy>();
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<DummyWithName>();
@@ -90,15 +83,14 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         public void TestImplementationRegisterNamedWithFactory()
         {
             //Arrange
-            var container = new ContainerBuilder();
+            var container = new UnityContainer();
             const string NAME = "MyName";
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(NAME, CreatFunc)).RegisterTypes(container);
-            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = scope.ResolveNamed<IDummy>(NAME);
+            var res = container.Resolve<IDummy>(NAME);
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<DummyWithName>();
@@ -108,13 +100,12 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         public void TestRegisterInstance()
         {
             //Arrange
-            var container = new ContainerBuilder();
+            var container = new UnityContainer();
             Dummy instance = new Dummy();
             new DynamicRegistrant(r => r.RegisterInstance(instance)).RegisterTypes(container);
-            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = scope.Resolve<Dummy>();
+            var res = container.Resolve<Dummy>();
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -123,13 +114,12 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         public void TestRegisterInstanceImplementingInterface()
         {
             //Arrange
-            var container = new ContainerBuilder();
+            var container = new UnityContainer();
             Dummy instance = new Dummy();
             new DynamicRegistrant(r => r.RegisterInstance<IDummy>(instance)).RegisterTypes(container);
-            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = scope.Resolve<IDummy>();
+            var res = container.Resolve<IDummy>();
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();

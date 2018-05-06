@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using Com.Ericmas001.DependencyInjection.RegisteredElements;
-using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
-using Com.Ericmas001.DependencyInjection.Resolvers;
+﻿using Com.Ericmas001.DependencyInjection.Resolvers;
 using Com.Ericmas001.DependencyInjection.Tests.Models;
 using FluentAssertions;
 using Xunit;

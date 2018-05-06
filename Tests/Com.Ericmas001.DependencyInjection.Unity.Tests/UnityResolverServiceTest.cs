@@ -1,11 +1,5 @@
-﻿using System;
-using System.Linq;
-using Com.Ericmas001.DependencyInjection.RegisteredElements;
-using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
-using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
-using Com.Ericmas001.DependencyInjection.Tests.Models;
+﻿using Com.Ericmas001.DependencyInjection.Tests.Models;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Unity;
 using Xunit;
 

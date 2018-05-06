@@ -1,27 +1,22 @@
-﻿using System;
-using System.Linq;
-using Com.Ericmas001.DependencyInjection.RegisteredElements;
-using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
-using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
+﻿using Autofac;
 using Com.Ericmas001.DependencyInjection.Tests.Models;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Unity;
 using Xunit;
 
-namespace Com.Ericmas001.DependencyInjection.Unity.Tests
+namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
 {
-    public class UnityHelperTests
+    public class AutofacHelperTests
     {
         [Fact]
         public void TestSimpleRegister()
         {
             //Arrange
-            var container = new UnityContainer();
+            var container = new ContainerBuilder();
             new DynamicRegistrant(r => r.Register<Dummy>()).RegisterTypes(container);
+            var scope = container.Build().BeginLifetimeScope();
             
             //Act
-            var res = container.Resolve<Dummy>();
+            var res = scope.Resolve<Dummy>();
             
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -30,11 +25,12 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         public void TestImplementationRegister()
         {
             //Arrange
-            var container = new UnityContainer();
+            var container = new ContainerBuilder();
             new DynamicRegistrant(r => r.Register<IDummy, Dummy>()).RegisterTypes(container);
-            
+            var scope = container.Build().BeginLifetimeScope();
+
             //Act
-            var res = container.Resolve<IDummy>();
+            var res = scope.Resolve<IDummy>();
             
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -43,12 +39,13 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         public void TestImplementationRegisterNamed()
         {
             //Arrange
-            var container = new UnityContainer();
+            var container = new ContainerBuilder();
             const string DUMB_NAME = "DumbName";
             new DynamicRegistrant(r => r.Register<IDummy, Dummy>(DUMB_NAME)).RegisterTypes(container);
+            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = container.Resolve<IDummy>(DUMB_NAME);
+            var res = scope.ResolveNamed<IDummy>(DUMB_NAME);
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -57,13 +54,14 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         public void TestSimpleRegisterWithFactory()
         {
             //Arrange
-            var container = new UnityContainer();
+            var container = new ContainerBuilder();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register(CreatFunc)).RegisterTypes(container);
+            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = container.Resolve<DummyWithName>();
+            var res = scope.Resolve<DummyWithName>();
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<DummyWithName>();
@@ -73,13 +71,14 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         public void TestImplementationRegisterWithFactory()
         {
             //Arrange
-            var container = new UnityContainer();
+            var container = new ContainerBuilder();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(CreatFunc)).RegisterTypes(container);
+            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = container.Resolve<IDummy>();
+            var res = scope.Resolve<IDummy>();
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<DummyWithName>();
@@ -89,14 +88,15 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         public void TestImplementationRegisterNamedWithFactory()
         {
             //Arrange
-            var container = new UnityContainer();
+            var container = new ContainerBuilder();
             const string NAME = "MyName";
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(NAME, CreatFunc)).RegisterTypes(container);
+            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = container.Resolve<IDummy>(NAME);
+            var res = scope.ResolveNamed<IDummy>(NAME);
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<DummyWithName>();
@@ -106,12 +106,13 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         public void TestRegisterInstance()
         {
             //Arrange
-            var container = new UnityContainer();
+            var container = new ContainerBuilder();
             Dummy instance = new Dummy();
             new DynamicRegistrant(r => r.RegisterInstance(instance)).RegisterTypes(container);
+            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = container.Resolve<Dummy>();
+            var res = scope.Resolve<Dummy>();
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -120,12 +121,13 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         public void TestRegisterInstanceImplementingInterface()
         {
             //Arrange
-            var container = new UnityContainer();
+            var container = new ContainerBuilder();
             Dummy instance = new Dummy();
             new DynamicRegistrant(r => r.RegisterInstance<IDummy>(instance)).RegisterTypes(container);
+            var scope = container.Build().BeginLifetimeScope();
 
             //Act
-            var res = container.Resolve<IDummy>();
+            var res = scope.Resolve<IDummy>();
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();

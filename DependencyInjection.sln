@@ -17,13 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyIn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Autofac", "Com.Ericmas001.DependencyInjection.Autofac\Com.Ericmas001.DependencyInjection.Autofac.csproj", "{347AA5AF-65B5-4D1A-AD6C-6ABCA14B8198}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Tests", "Com.Ericmas001.DependencyInjection.Tests\Com.Ericmas001.DependencyInjection.Tests.csproj", "{F040F4E3-FEFE-46AB-94D0-5FDCD6226A01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Tests", "Tests\Com.Ericmas001.DependencyInjection.Tests\Com.Ericmas001.DependencyInjection.Tests.csproj", "{F040F4E3-FEFE-46AB-94D0-5FDCD6226A01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2917A1F2-0646-4AA0-854E-742DDE338BB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Unity.Tests", "Com.Ericmas001.DependencyInjection.Unity.Tests\Com.Ericmas001.DependencyInjection.Unity.Tests.csproj", "{1C17717B-E14F-4266-8DC9-6654F21B496C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Unity.Tests", "Tests\Com.Ericmas001.DependencyInjection.Unity.Tests\Com.Ericmas001.DependencyInjection.Unity.Tests.csproj", "{1C17717B-E14F-4266-8DC9-6654F21B496C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Autofac.Tests", "Com.Ericmas001.DependencyInjection.Autofac.Tests\Com.Ericmas001.DependencyInjection.Autofac.Tests.csproj", "{C0AC978F-2F43-405D-98F1-967FB47F3370}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Autofac.Tests", "Tests\Com.Ericmas001.DependencyInjection.Autofac.Tests\Com.Ericmas001.DependencyInjection.Autofac.Tests.csproj", "{C0AC978F-2F43-405D-98F1-967FB47F3370}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

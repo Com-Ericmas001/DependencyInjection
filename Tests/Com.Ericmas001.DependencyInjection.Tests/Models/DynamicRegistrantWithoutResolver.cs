@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
-using Com.Ericmas001.DependencyInjection.Registrants;
-using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
 using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 
 namespace Com.Ericmas001.DependencyInjection.Tests.Models
