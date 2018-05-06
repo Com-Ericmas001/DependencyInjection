@@ -42,9 +42,9 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         else
                         {
                             if (string.IsNullOrEmpty(iElem.Name))
-                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType, new InjectionFactory(c => iElem.Factory));
+                                container.RegisterType(iElem.RegisteredType, new InjectionFactory(c => iElem.Factory));
                             else
-                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType, iElem.Name, new InjectionFactory(c => iElem.Factory));
+                                container.RegisterType(iElem.RegisteredType, iElem.Name, new InjectionFactory(c => iElem.Factory));
                         }
 
                         break;
