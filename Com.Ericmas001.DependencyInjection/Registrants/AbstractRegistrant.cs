@@ -19,6 +19,22 @@ namespace Com.Ericmas001.DependencyInjection.Registrants
             RegisterEverything();
             return m_RegisteredTypeAssociation.ToArray();
         }
+        protected void AddToRegistrant(IRegisteredElement elem)
+        {
+            m_RegisteredTypeAssociation.Add(elem);
+        }
+        protected void AddToRegistrant(IEnumerable<IRegisteredElement> elems)
+        {
+            m_RegisteredTypeAssociation.AddRange(elems);
+        }
+        protected void AddToRegistrant(IRegistrant registrant)
+        {
+            AddToRegistrant(registrant.GetRegisteredTypeAssociation());
+        }
+        protected void AddToRegistrant<T>() where T : IRegistrant, new()
+        {
+            AddToRegistrant(new T());
+        }
         protected void Register<T>()
         {
             m_RegisteredTypeAssociation.Add(new SimpleRegisteredElement(typeof(T)));
