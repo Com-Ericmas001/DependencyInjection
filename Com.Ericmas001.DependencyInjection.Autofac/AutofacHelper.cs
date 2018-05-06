@@ -41,9 +41,9 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
                             else
                             {
                                 if (string.IsNullOrEmpty(iElem.Name))
-                                    container.Register(c => iElem.Factory).As(iElem.RegisteredType);
+                                    container.Register(c => iElem.Factory()).As(iElem.RegisteredType);
                                 else
-                                    container.Register(c => iElem.Factory).Named(iElem.Name, iElem.RegisteredType);
+                                    container.Register(c => iElem.Factory()).Named(iElem.Name, iElem.RegisteredType);
                             }
 
                             break;
@@ -53,7 +53,7 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
                             if (sElem.Factory == null)
                                 container.RegisterType(sElem.RegisteredType);
                             else
-                                container.Register(c => sElem.Factory);
+                                container.Register(c => sElem.Factory());
                             break;
                         }
                     default:
