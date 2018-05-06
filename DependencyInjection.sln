@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyIn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyInjection", "Com.Ericmas001.DependencyInjection\Com.Ericmas001.DependencyInjection.csproj", "{FB4EB5AE-7CCC-4FDA-A537-CC64A8382420}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Autofac", "Com.Ericmas001.DependencyInjection.Autofac\Com.Ericmas001.DependencyInjection.Autofac.csproj", "{347AA5AF-65B5-4D1A-AD6C-6ABCA14B8198}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{FB4EB5AE-7CCC-4FDA-A537-CC64A8382420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB4EB5AE-7CCC-4FDA-A537-CC64A8382420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB4EB5AE-7CCC-4FDA-A537-CC64A8382420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347AA5AF-65B5-4D1A-AD6C-6ABCA14B8198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347AA5AF-65B5-4D1A-AD6C-6ABCA14B8198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347AA5AF-65B5-4D1A-AD6C-6ABCA14B8198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347AA5AF-65B5-4D1A-AD6C-6ABCA14B8198}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
