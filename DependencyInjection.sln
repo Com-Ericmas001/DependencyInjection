@@ -15,15 +15,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyIn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyInjection", "Com.Ericmas001.DependencyInjection\Com.Ericmas001.DependencyInjection.csproj", "{FB4EB5AE-7CCC-4FDA-A537-CC64A8382420}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Autofac", "Com.Ericmas001.DependencyInjection.Autofac\Com.Ericmas001.DependencyInjection.Autofac.csproj", "{347AA5AF-65B5-4D1A-AD6C-6ABCA14B8198}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyInjection.Autofac", "Com.Ericmas001.DependencyInjection.Autofac\Com.Ericmas001.DependencyInjection.Autofac.csproj", "{347AA5AF-65B5-4D1A-AD6C-6ABCA14B8198}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Tests", "Tests\Com.Ericmas001.DependencyInjection.Tests\Com.Ericmas001.DependencyInjection.Tests.csproj", "{F040F4E3-FEFE-46AB-94D0-5FDCD6226A01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyInjection.Tests", "Tests\Com.Ericmas001.DependencyInjection.Tests\Com.Ericmas001.DependencyInjection.Tests.csproj", "{F040F4E3-FEFE-46AB-94D0-5FDCD6226A01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2917A1F2-0646-4AA0-854E-742DDE338BB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Unity.Tests", "Tests\Com.Ericmas001.DependencyInjection.Unity.Tests\Com.Ericmas001.DependencyInjection.Unity.Tests.csproj", "{1C17717B-E14F-4266-8DC9-6654F21B496C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyInjection.Unity.Tests", "Tests\Com.Ericmas001.DependencyInjection.Unity.Tests\Com.Ericmas001.DependencyInjection.Unity.Tests.csproj", "{1C17717B-E14F-4266-8DC9-6654F21B496C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Ericmas001.DependencyInjection.Autofac.Tests", "Tests\Com.Ericmas001.DependencyInjection.Autofac.Tests\Com.Ericmas001.DependencyInjection.Autofac.Tests.csproj", "{C0AC978F-2F43-405D-98F1-967FB47F3370}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyInjection.Autofac.Tests", "Tests\Com.Ericmas001.DependencyInjection.Autofac.Tests\Com.Ericmas001.DependencyInjection.Autofac.Tests.csproj", "{C0AC978F-2F43-405D-98F1-967FB47F3370}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyInjection.Microsoft", "Com.Ericmas001.DependencyInjection.Microsoft\Com.Ericmas001.DependencyInjection.Microsoft.csproj", "{49D99E70-B6F2-422C-8926-6BC848ACF88F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Com.Ericmas001.DependencyInjection.Microsoft.Tests", "Tests\Com.Ericmas001.DependencyInjection.Microsoft.Tests\Com.Ericmas001.DependencyInjection.Microsoft.Tests.csproj", "{95D62FE7-E18A-4C35-885E-10F4F1D48E4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,14 @@ Global
 		{C0AC978F-2F43-405D-98F1-967FB47F3370}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0AC978F-2F43-405D-98F1-967FB47F3370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0AC978F-2F43-405D-98F1-967FB47F3370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49D99E70-B6F2-422C-8926-6BC848ACF88F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D99E70-B6F2-422C-8926-6BC848ACF88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D99E70-B6F2-422C-8926-6BC848ACF88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D99E70-B6F2-422C-8926-6BC848ACF88F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95D62FE7-E18A-4C35-885E-10F4F1D48E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95D62FE7-E18A-4C35-885E-10F4F1D48E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95D62FE7-E18A-4C35-885E-10F4F1D48E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95D62FE7-E18A-4C35-885E-10F4F1D48E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +75,7 @@ Global
 		{F040F4E3-FEFE-46AB-94D0-5FDCD6226A01} = {2917A1F2-0646-4AA0-854E-742DDE338BB2}
 		{1C17717B-E14F-4266-8DC9-6654F21B496C} = {2917A1F2-0646-4AA0-854E-742DDE338BB2}
 		{C0AC978F-2F43-405D-98F1-967FB47F3370} = {2917A1F2-0646-4AA0-854E-742DDE338BB2}
+		{95D62FE7-E18A-4C35-885E-10F4F1D48E4E} = {2917A1F2-0646-4AA0-854E-742DDE338BB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {716DE816-DF98-4DFC-A69D-4346A623CA3B}
