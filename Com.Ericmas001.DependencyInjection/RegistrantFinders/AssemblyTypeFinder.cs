@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Com.Ericmas001.DependencyInjection.RegistrantFinders
 {
@@ -8,7 +9,12 @@ namespace Com.Ericmas001.DependencyInjection.RegistrantFinders
     {
         public IEnumerable<Type> FindTypesImplementing<TInterface>()
         {
-            return AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(p => typeof(TInterface).IsAssignableFrom(p));
+            return Assembly
+                .GetEntryAssembly()
+                .GetReferencedAssemblies()
+                .Select(Assembly.Load)
+                .SelectMany(x => x.DefinedTypes)
+                .Where(p => typeof(TInterface).IsAssignableFrom(p));
         }
     }
 }
