@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/Com-Ericmas001/DependencyInjection.svg?branch=master)](https://travis-ci.org/Com-Ericmas001/DependencyInjection)
 [![com-ericmas001 MyGet Build Status](https://www.myget.org/BuildSource/Badge/com-ericmas001?identifier=ffc33a89-4157-47d7-9cbe-70ee7d4df05a)](https://www.myget.org/)
 
-###Current Version: 2.0.1 *(2018-05-26)*
+###Current Version: 2.1.0 *(2018-05-26)*
 <table align="center" width="100%">
     <tbody>
         <tr>
