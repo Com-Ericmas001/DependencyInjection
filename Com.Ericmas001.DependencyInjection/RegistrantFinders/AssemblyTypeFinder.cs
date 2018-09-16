@@ -20,17 +20,21 @@ namespace Com.Ericmas001.DependencyInjection.RegistrantFinders
             }
         }
 
-        private readonly string[] m_Prefixes;
+        private readonly IEnumerable<Assembly> _extraAssemblies;
+        private readonly string[] _prefixes;
 
-        public AssemblyTypeFinder(params string[] prefixes)
+        public AssemblyTypeFinder(IEnumerable<Assembly> extraAssemblies, params string[] prefixes)
         {
-            m_Prefixes = prefixes;
+            _extraAssemblies = extraAssemblies;
+            _prefixes = prefixes;
         }
         public IEnumerable<Type> FindTypesImplementing<TInterface>()
         {
             return GetAssemblies(Assembly.GetEntryAssembly())
                 .Distinct(new AssemblyNameEqualityComparer())
-                .Select(x => Assembly.Load(x))
+                .Where(x => _extraAssemblies.All(y => x.Name != y.GetName().Name))
+                .Select(Assembly.Load)
+                .Concat(_extraAssemblies)
                 .SelectMany(x => x.DefinedTypes)
                 .Where(p => typeof(TInterface).IsAssignableFrom(p));
         }
@@ -42,7 +46,7 @@ namespace Com.Ericmas001.DependencyInjection.RegistrantFinders
 
         private bool WantedPrefix(AssemblyName an)
         {
-            foreach (var prefix in m_Prefixes)
+            foreach (var prefix in _prefixes)
                 if (an.Name.StartsWith(prefix))
                     return true;
             return false;
