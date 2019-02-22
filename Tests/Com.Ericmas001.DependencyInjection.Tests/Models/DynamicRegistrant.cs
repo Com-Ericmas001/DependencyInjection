@@ -8,15 +8,15 @@ namespace Com.Ericmas001.DependencyInjection.Tests.Models
 {
     public class DynamicRegistrant : AbstractRegistrant
     {
-        private readonly Action<DynamicRegistrant> m_RegisterFnct;
+        private readonly Action<DynamicRegistrant> _registerFnct;
 
         public DynamicRegistrant(Action<DynamicRegistrant> registerFnct)
         {
-            m_RegisterFnct = registerFnct;
+            _registerFnct = registerFnct;
         }
         protected override void RegisterEverything()
         {
-            m_RegisterFnct(this);
+            _registerFnct(this);
         }
 
         public new void AddToRegistrant(IRegisteredElement elem)

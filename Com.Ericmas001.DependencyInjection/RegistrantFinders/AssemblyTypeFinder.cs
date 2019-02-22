@@ -11,7 +11,7 @@ namespace Com.Ericmas001.DependencyInjection.RegistrantFinders
         {
             public bool Equals(AssemblyName x, AssemblyName y)
             {
-                return x.Name == y.Name;
+                return y != null && (x != null && x.Name == y.Name) || x == null && y == null;
             }
 
             public int GetHashCode(AssemblyName obj)

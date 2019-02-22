@@ -61,15 +61,15 @@ namespace Com.Ericmas001.DependencyInjection.Tests
 
         private class SimpleTypesFinder : ITypesFinder
         {
-            private readonly Type[] m_Registrants;
+            private readonly Type[] _registrants;
 
             public SimpleTypesFinder(params Type[] registrants)
             {
-                m_Registrants = registrants;
+                _registrants = registrants;
             }
             public IEnumerable<Type> FindTypesImplementing<TInterface>()
             {
-                return m_Registrants;
+                return _registrants;
             }
         }
 

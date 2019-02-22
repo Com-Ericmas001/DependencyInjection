@@ -6,21 +6,21 @@ namespace Com.Ericmas001.DependencyInjection.Unity
 {
     public class UnityResolverService : IResolverService
     {
-        private readonly IUnityContainer m_Container;
+        private readonly IUnityContainer _container;
 
         public UnityResolverService(IUnityContainer container)
         {
-            m_Container = container;
+            _container = container;
         }
 
         public T Resolve<T>()
         {
-            return m_Container.Resolve<T>();
+            return _container.Resolve<T>();
         }
 
         public object Resolve(Type t)
         {
-            return m_Container.Resolve(t);
+            return _container.Resolve(t);
         }
     }
 }

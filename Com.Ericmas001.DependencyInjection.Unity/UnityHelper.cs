@@ -4,7 +4,6 @@ using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
 using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
 using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 using Unity;
-using Unity.Injection;
 
 namespace Com.Ericmas001.DependencyInjection.Unity
 {
@@ -37,9 +36,9 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         else
                         {
                             if (string.IsNullOrEmpty(iElem.Name))
-                                container.RegisterType(iElem.RegisteredType, new InjectionFactory(c => iElem.Factory()));
+                                container.RegisterFactory(iElem.RegisteredType, c => iElem.Factory());
                             else
-                                container.RegisterType(iElem.RegisteredType, iElem.Name, new InjectionFactory(c => iElem.Factory()));
+                                container.RegisterFactory(iElem.RegisteredType, iElem.Name, c => iElem.Factory());
                         }
 
                         break;
@@ -49,7 +48,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         if(sElem.Factory == null)
                             container.RegisterType(sElem.RegisteredType);
                         else
-                            container.RegisterType(sElem.RegisteredType, new InjectionFactory(c => sElem.Factory()));
+                            container.RegisterFactory(sElem.RegisteredType, c => sElem.Factory());
                             break;
                     }
                     default:
