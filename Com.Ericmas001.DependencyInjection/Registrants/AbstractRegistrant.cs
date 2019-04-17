@@ -36,38 +36,22 @@ namespace Com.Ericmas001.DependencyInjection.Registrants
         {
             AddToRegistrant(new T());
         }
-        protected void Register<T>()
+
+        protected void Register<T>(Func<T> factory = null, bool isSingleton = false)
+            where T : class
         {
-            _registeredTypeAssociation.Add(new SimpleRegisteredElement(typeof(T)));
+            AddToRegistrant(new SimpleRegisteredElement(typeof(T)) { Factory = factory, IsSingleton = isSingleton });
         }
-        protected void Register<TInterface, TImplementation>()
-            where TImplementation : TInterface
-        {
-            _registeredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)));
-        }
-        protected void Register<TInterface, TImplementation>(string name)
-            where TImplementation : TInterface
-        {
-            _registeredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Name = name });
-        }
-        protected void Register<T>(Func<T> factory) 
-            where T:class
-        {
-            _registeredTypeAssociation.Add(new SimpleRegisteredElement(typeof(T)){Factory = factory});
-        }
-        protected void Register<TInterface, TImplementation>(Func<TImplementation> factory)
+
+        protected void Register<TInterface, TImplementation>(string name = null, Func<TImplementation> factory = null, bool isSingleton = false)
             where TImplementation : class, TInterface
         {
-            _registeredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Factory = factory });
+            AddToRegistrant(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Name = name, IsSingleton = isSingleton, Factory = factory });
         }
-        protected void Register<TInterface, TImplementation>(string name, Func<TImplementation> factory)
-            where TImplementation : class, TInterface
-        {
-            _registeredTypeAssociation.Add(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Name = name, Factory = factory });
-        }
+
         protected void RegisterInstance<TInterface>(TInterface obj)
         {
-            _registeredTypeAssociation.Add(new InstanceImplementationRegisteredElement(typeof(TInterface), obj));
+            AddToRegistrant(new InstanceImplementationRegisteredElement(typeof(TInterface), obj));
         }
     }
 }

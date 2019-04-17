@@ -35,35 +35,19 @@ namespace Com.Ericmas001.DependencyInjection.Tests.Models
         {
             base.AddToRegistrant<T>();
         }
-        public new void Register<T>()
-        {
-            base.Register<T>();
-        }
-        public new void Register<TInterface, TImplementation>()
-            where TImplementation : TInterface
-        {
-            base.Register<TInterface, TImplementation>();
-        }
-        public new void Register<TInterface, TImplementation>(string name)
-            where TImplementation : TInterface
-        {
-            base.Register<TInterface, TImplementation>(name);
-        }
-        public new void Register<T>(Func<T> factory)
+
+        public new void Register<T>(Func<T> factory = null, bool isSingleton = false)
             where T : class
         {
-            base.Register(factory);
+            base.Register(factory, isSingleton);
         }
-        public new void Register<TInterface, TImplementation>(Func<TImplementation> factory)
+
+        public new void Register<TInterface, TImplementation>(string name = null, Func<TImplementation> factory = null, bool isSingleton = false)
             where TImplementation : class, TInterface
         {
-            base.Register<TInterface, TImplementation>(factory);
+            base.Register<TInterface, TImplementation>(name, factory, isSingleton);
         }
-        public new void Register<TInterface, TImplementation>(string name, Func<TImplementation> factory)
-            where TImplementation : class, TInterface
-        {
-            base.Register<TInterface, TImplementation>(name, factory);
-        }
+
         public new void RegisterInstance<TInterface>(TInterface obj)
         {
             base.RegisterInstance(obj);

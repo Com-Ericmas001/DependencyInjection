@@ -14,10 +14,10 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
             IServiceCollection container = new ServiceCollection();
             new DynamicRegistrant(r => r.Register<Dummy>()).RegisterTypes(container);
             var provider = container.BuildServiceProvider();
-            
+
             //Act
             var res = provider.GetService<Dummy>();
-            
+
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
         }
@@ -31,7 +31,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
 
             //Act
             var res = provider.GetService<IDummy>();
-            
+
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
         }
@@ -59,7 +59,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
             IServiceCollection container = new ServiceCollection();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
-            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(CreatFunc)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(factory: CreatFunc)).RegisterTypes(container);
             var provider = container.BuildServiceProvider();
 
             //Act

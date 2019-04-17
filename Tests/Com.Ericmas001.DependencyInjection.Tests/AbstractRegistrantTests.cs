@@ -49,6 +49,23 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             var elem = (SimpleRegisteredElement)res.Single();
             elem.RegisteredType.Should().Be<Dummy>();
             elem.Factory.Should().BeNull();
+            elem.IsSingleton.Should().BeFalse();
+        }
+        [Fact]
+        public void TestSimpleRegisterSingleton()
+        {
+            //Arrange
+            var reg = new DynamicRegistrantWithoutResolver(r => r.Register<Dummy>(isSingleton: true));
+
+            //Act
+            var res = reg.GetRegisteredTypeAssociation().ToArray();
+
+            //Assert
+            res.Should().AllBeOfType<SimpleRegisteredElement>().And.HaveCount(1);
+            var elem = (SimpleRegisteredElement)res.Single();
+            elem.RegisteredType.Should().Be<Dummy>();
+            elem.Factory.Should().BeNull();
+            elem.IsSingleton.Should().BeTrue();
         }
         [Fact]
         public void TestImplementationRegister()
@@ -66,6 +83,25 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             elem.ImplementationType.Should().Be<Dummy>();
             elem.Name.Should().BeNullOrEmpty();
             elem.Factory.Should().BeNull();
+            elem.IsSingleton.Should().BeFalse();
+        }
+        [Fact]
+        public void TestImplementationRegisterSingleton()
+        {
+            //Arrange
+            var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(isSingleton: true));
+
+            //Act
+            var res = reg.GetRegisteredTypeAssociation().ToArray();
+
+            //Assert
+            res.Should().AllBeOfType<ImplementationRegisteredElement>().And.HaveCount(1);
+            var elem = (ImplementationRegisteredElement)res.Single();
+            elem.RegisteredType.Should().Be<IDummy>();
+            elem.ImplementationType.Should().Be<Dummy>();
+            elem.Name.Should().BeNullOrEmpty();
+            elem.Factory.Should().BeNull();
+            elem.IsSingleton.Should().BeTrue();
         }
         [Fact]
         public void TestImplementationRegisterNamed()
@@ -84,6 +120,26 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             elem.ImplementationType.Should().Be<Dummy>();
             elem.Name.Should().Be(NAME);
             elem.Factory.Should().BeNull();
+            elem.IsSingleton.Should().BeFalse();
+        }
+        [Fact]
+        public void TestImplementationRegisterNamedSingleton()
+        {
+            //Arrange
+            const string NAME = "MyName";
+            var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(NAME, isSingleton: true));
+
+            //Act
+            var res = reg.GetRegisteredTypeAssociation().ToArray();
+
+            //Assert
+            res.Should().AllBeOfType<ImplementationRegisteredElement>().And.HaveCount(1);
+            var elem = (ImplementationRegisteredElement)res.Single();
+            elem.RegisteredType.Should().Be<IDummy>();
+            elem.ImplementationType.Should().Be<Dummy>();
+            elem.Name.Should().Be(NAME);
+            elem.Factory.Should().BeNull();
+            elem.IsSingleton.Should().BeTrue();
         }
         [Fact]
         public void TestSimpleRegisterWithFactory()
@@ -99,6 +155,24 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             res.Should().AllBeOfType<SimpleRegisteredElement>().And.HaveCount(1);
             var elem = (SimpleRegisteredElement)res.Single();
             elem.RegisteredType.Should().Be<Dummy>();
+            elem.IsSingleton.Should().BeFalse();
+            //elem.Factory.Should().Be((Func<Dummy>) CreatFunc); Todo: Check that !
+        }
+        [Fact]
+        public void TestSimpleRegisterWithFactorySingleton()
+        {
+            //Arrange
+            Dummy CreatFunc() => new Dummy();
+            var reg = new DynamicRegistrantWithoutResolver(r => r.Register(CreatFunc, true));
+
+            //Act
+            var res = reg.GetRegisteredTypeAssociation().ToArray();
+
+            //Assert
+            res.Should().AllBeOfType<SimpleRegisteredElement>().And.HaveCount(1);
+            var elem = (SimpleRegisteredElement)res.Single();
+            elem.RegisteredType.Should().Be<Dummy>();
+            elem.IsSingleton.Should().BeTrue();
             //elem.Factory.Should().Be((Func<Dummy>) CreatFunc); Todo: Check that !
         }
         [Fact]
@@ -106,7 +180,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
         {
             //Arrange
             Dummy CreatFunc() => new Dummy();
-            var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(CreatFunc));
+            var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(factory: CreatFunc));
 
             //Act
             var res = reg.GetRegisteredTypeAssociation().ToArray();
@@ -117,6 +191,26 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             elem.RegisteredType.Should().Be<IDummy>();
             elem.ImplementationType.Should().Be<Dummy>();
             elem.Name.Should().BeNullOrEmpty();
+            elem.IsSingleton.Should().BeFalse();
+            //elem.Factory.Should().Be((Func<Dummy>)CreatFunc); Todo: Check that !
+        }
+        [Fact]
+        public void TestImplementationRegisterWithFactorySingleton()
+        {
+            //Arrange
+            Dummy CreatFunc() => new Dummy();
+            var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(factory: CreatFunc, isSingleton: true));
+
+            //Act
+            var res = reg.GetRegisteredTypeAssociation().ToArray();
+
+            //Assert
+            res.Should().AllBeOfType<ImplementationRegisteredElement>().And.HaveCount(1);
+            var elem = (ImplementationRegisteredElement)res.Single();
+            elem.RegisteredType.Should().Be<IDummy>();
+            elem.ImplementationType.Should().Be<Dummy>();
+            elem.Name.Should().BeNullOrEmpty();
+            elem.IsSingleton.Should().BeTrue();
             //elem.Factory.Should().Be((Func<Dummy>)CreatFunc); Todo: Check that !
         }
         [Fact]
@@ -136,6 +230,27 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             elem.RegisteredType.Should().Be<IDummy>();
             elem.ImplementationType.Should().Be<Dummy>();
             elem.Name.Should().Be(NAME);
+            elem.IsSingleton.Should().BeFalse();
+            //elem.Factory.Should().Be((Func<Dummy>)CreatFunc); Todo: Check that !
+        }
+        [Fact]
+        public void TestImplementationRegisterNamedWithFactorySingleton()
+        {
+            //Arrange
+            const string NAME = "MyName";
+            Dummy CreatFunc() => new Dummy();
+            var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(NAME, CreatFunc, true));
+
+            //Act
+            var res = reg.GetRegisteredTypeAssociation().ToArray();
+
+            //Assert
+            res.Should().AllBeOfType<ImplementationRegisteredElement>().And.HaveCount(1);
+            var elem = (ImplementationRegisteredElement)res.Single();
+            elem.RegisteredType.Should().Be<IDummy>();
+            elem.ImplementationType.Should().Be<Dummy>();
+            elem.Name.Should().Be(NAME);
+            elem.IsSingleton.Should().BeTrue();
             //elem.Factory.Should().Be((Func<Dummy>)CreatFunc); Todo: Check that !
         }
         [Fact]
@@ -188,9 +303,11 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             var elem1 = (SimpleRegisteredElement)res.First();
             elem1.RegisteredType.Should().Be<Dummy>();
             elem1.Factory.Should().BeNull();
+            elem1.IsSingleton.Should().BeFalse();
             var elem2 = (SimpleRegisteredElement)res.Last();
             elem2.RegisteredType.Should().Be<BetterDummy>();
             elem2.Factory.Should().BeNull();
+            elem2.IsSingleton.Should().BeFalse();
         }
         [Fact]
         public void TestAddingRegistrantElements()
@@ -210,9 +327,11 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             var elem1 = (SimpleRegisteredElement)res.First();
             elem1.RegisteredType.Should().Be<Dummy>();
             elem1.Factory.Should().BeNull();
+            elem1.IsSingleton.Should().BeFalse();
             var elem2 = (SimpleRegisteredElement)res.Last();
             elem2.RegisteredType.Should().Be<BetterDummy>();
             elem2.Factory.Should().BeNull();
+            elem2.IsSingleton.Should().BeFalse();
         }
         [Fact]
         public void TestAddingRegistrant()
@@ -232,9 +351,11 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             var elem1 = (SimpleRegisteredElement)res.First();
             elem1.RegisteredType.Should().Be<Dummy>();
             elem1.Factory.Should().BeNull();
+            elem1.IsSingleton.Should().BeFalse();
             var elem2 = (SimpleRegisteredElement)res.Last();
             elem2.RegisteredType.Should().Be<BetterDummy>();
             elem2.Factory.Should().BeNull();
+            elem2.IsSingleton.Should().BeFalse();
         }
         [Fact]
         public void TestAddingRegistrantAutoConstruct()
@@ -254,9 +375,11 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             var elem1 = (SimpleRegisteredElement)res.First();
             elem1.RegisteredType.Should().Be<Dummy>();
             elem1.Factory.Should().BeNull();
+            elem1.IsSingleton.Should().BeFalse();
             var elem2 = (SimpleRegisteredElement)res.Last();
             elem2.RegisteredType.Should().Be<BetterDummy>();
             elem2.Factory.Should().BeNull();
+            elem2.IsSingleton.Should().BeFalse();
         }
     }
 }

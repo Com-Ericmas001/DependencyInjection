@@ -13,10 +13,10 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             //Arrange
             var container = new UnityContainer();
             new DynamicRegistrant(r => r.Register<Dummy>()).RegisterTypes(container);
-            
+
             //Act
             var res = container.Resolve<Dummy>();
-            
+
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
         }
@@ -26,10 +26,10 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             //Arrange
             var container = new UnityContainer();
             new DynamicRegistrant(r => r.Register<IDummy, Dummy>()).RegisterTypes(container);
-            
+
             //Act
             var res = container.Resolve<IDummy>();
-            
+
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
         }
@@ -70,7 +70,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
-            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(CreatFunc)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(factory: CreatFunc)).RegisterTypes(container);
 
             //Act
             var res = container.Resolve<IDummy>();

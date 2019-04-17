@@ -9,6 +9,7 @@ namespace Com.Ericmas001.DependencyInjection.RegisteredElements
         public Type ImplementationType { get; set; }
         public string Name { get; set; }
         public Func<object> Factory { get; set; }
+        public bool IsSingleton { get; set; } = false;
 
         public ImplementationRegisteredElement(Type registeredType, Type implementationType)
         {

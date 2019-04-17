@@ -9,19 +9,20 @@
     <Authors>Ericmas001</Authors>
     <Company />
     <Description>Com.Ericmas001.DependencyInjection.Autofac</Description>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/Com-Ericmas001/DependencyInjection/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Com-Ericmas001/DependencyInjection</PackageProjectUrl>
     <PackageIconUrl>https://github.com/Com-Ericmas001/Common/raw/master/Resources/lib.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/Com-Ericmas001/DependencyInjection</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageReleaseNotes>Development Version</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>3.0.0</Version>
+    <Version>4.0.0</Version>
     <PackageTags>dependencyinjection</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.1" />
+    <PackageReference Include="Autofac" Version="4.9.2" />
   </ItemGroup>
 
   <ItemGroup>

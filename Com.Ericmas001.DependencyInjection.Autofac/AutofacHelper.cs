@@ -22,40 +22,55 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
                     case InstanceImplementationRegisteredElement iiElem:
                     {
                         container.RegisterInstance(iiElem.Instance).As(iiElem.RegisteredType);
-                            break;
-                        }
+                        break;
+                    }
                     case ImplementationRegisteredElement iElem:
+                    {
+                        if (iElem.Factory == null)
                         {
-                            if (iElem.Factory == null)
-                            {
-                                if (string.IsNullOrEmpty(iElem.Name))
+                            if (string.IsNullOrEmpty(iElem.Name))
+                                if (iElem.IsSingleton)
+                                    container.RegisterType(iElem.ImplementationType).As(iElem.RegisteredType).SingleInstance();
+                                else
                                     container.RegisterType(iElem.ImplementationType).As(iElem.RegisteredType);
-                                else
-                                    container.RegisterType(iElem.ImplementationType).Named(iElem.Name, iElem.RegisteredType);
-                            }
+                            else if (iElem.IsSingleton)
+                                container.RegisterType(iElem.ImplementationType).Named(iElem.Name, iElem.RegisteredType).SingleInstance();
                             else
-                            {
-                                if (string.IsNullOrEmpty(iElem.Name))
+                                container.RegisterType(iElem.ImplementationType).Named(iElem.Name, iElem.RegisteredType);
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(iElem.Name))
+                                if (iElem.IsSingleton)
+                                    container.Register(c => iElem.Factory()).As(iElem.RegisteredType).SingleInstance();
+                                else
                                     container.Register(c => iElem.Factory()).As(iElem.RegisteredType);
-                                else
-                                    container.Register(c => iElem.Factory()).Named(iElem.Name, iElem.RegisteredType);
-                            }
-
-                            break;
-                        }
-                    case SimpleRegisteredElement sElem:
-                        {
-                            if (sElem.Factory == null)
-                                container.RegisterType(sElem.RegisteredType);
+                            else if (iElem.IsSingleton)
+                                container.Register(c => iElem.Factory()).Named(iElem.Name, iElem.RegisteredType).SingleInstance();
                             else
-                                container.Register(c => sElem.Factory()).As(sElem.RegisteredType);
-                            break;
+                                container.Register(c => iElem.Factory()).Named(iElem.Name, iElem.RegisteredType);
                         }
+
+                        break;
+                    }
+                    case SimpleRegisteredElement sElem:
+                    {
+                        if (sElem.Factory == null)
+                            if (sElem.IsSingleton)
+                                container.RegisterType(sElem.RegisteredType).SingleInstance();
+                            else
+                                container.RegisterType(sElem.RegisteredType);
+                        else if (sElem.IsSingleton)
+                            container.Register(c => sElem.Factory()).As(sElem.RegisteredType).SingleInstance();
+                        else
+                            container.Register(c => sElem.Factory()).As(sElem.RegisteredType);
+                        break;
+                    }
                     default:
-                        {
-                            container.RegisterType(elem.RegisteredType);
-                            break;
-                        }
+                    {
+                        container.RegisterType(elem.RegisteredType);
+                        break;
+                    }
                 }
             }
             container.RegisterInstance<IResolverService>(new AutofacResolverService());

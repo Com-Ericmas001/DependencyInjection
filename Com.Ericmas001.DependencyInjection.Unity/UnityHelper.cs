@@ -4,6 +4,7 @@ using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
 using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
 using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 using Unity;
+using Unity.Lifetime;
 
 namespace Com.Ericmas001.DependencyInjection.Unity
 {
@@ -29,27 +30,27 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         if (iElem.Factory == null)
                         {
                             if (string.IsNullOrEmpty(iElem.Name))
-                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType);
+                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType, iElem.IsSingleton ? (ITypeLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                             else
-                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType, iElem.Name);
+                                container.RegisterType(iElem.RegisteredType, iElem.ImplementationType, iElem.Name, iElem.IsSingleton ? (ITypeLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                         }
                         else
                         {
                             if (string.IsNullOrEmpty(iElem.Name))
-                                container.RegisterFactory(iElem.RegisteredType, c => iElem.Factory());
+                                container.RegisterFactory(iElem.RegisteredType, c => iElem.Factory(), iElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                             else
-                                container.RegisterFactory(iElem.RegisteredType, iElem.Name, c => iElem.Factory());
+                                container.RegisterFactory(iElem.RegisteredType, iElem.Name, c => iElem.Factory(), iElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                         }
 
                         break;
                     }
                     case SimpleRegisteredElement sElem:
                     {
-                        if(sElem.Factory == null)
-                            container.RegisterType(sElem.RegisteredType);
+                        if (sElem.Factory == null)
+                            container.RegisterType(sElem.RegisteredType, sElem.IsSingleton ? (ITypeLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                         else
-                            container.RegisterFactory(sElem.RegisteredType, c => sElem.Factory());
-                            break;
+                            container.RegisterFactory(sElem.RegisteredType, c => sElem.Factory(), sElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
+                        break;
                     }
                     default:
                     {

@@ -23,40 +23,51 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
                     case InstanceImplementationRegisteredElement iiElem:
                     {
                         container.AddSingleton(iiElem.RegisteredType, iiElem.Instance);
-                            break;
-                        }
+                        break;
+                    }
                     case ImplementationRegisteredElement iElem:
+                    {
+                        if (iElem.Factory == null)
                         {
-                            if (iElem.Factory == null)
-                            {
-                                if (string.IsNullOrEmpty(iElem.Name))
+                            if (string.IsNullOrEmpty(iElem.Name))
+                                if (iElem.IsSingleton)
+                                    container.AddSingleton(iElem.RegisteredType, iElem.ImplementationType);
+                                else
                                     container.AddTransient(iElem.RegisteredType, iElem.ImplementationType);
-                                else
-                                    throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
-                            }
                             else
-                            {
-                                if (string.IsNullOrEmpty(iElem.Name))
+                                throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(iElem.Name))
+                                if (iElem.IsSingleton)
+                                    container.AddSingleton(iElem.RegisteredType, c => iElem.Factory());
+                                else
                                     container.AddTransient(iElem.RegisteredType, c => iElem.Factory());
-                                else
-                                    throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
-                            }
-
-                            break;
-                        }
-                    case SimpleRegisteredElement sElem:
-                        {
-                            if (sElem.Factory == null)
-                                container.AddTransient(sElem.RegisteredType);
                             else
-                                container.AddTransient(sElem.RegisteredType, c => sElem.Factory());
-                            break;
+                                throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
                         }
+
+                        break;
+                    }
+                    case SimpleRegisteredElement sElem:
+                    {
+                        if (sElem.Factory == null)
+                            if (sElem.IsSingleton)
+                                container.AddSingleton(sElem.RegisteredType);
+                            else
+                                container.AddTransient(sElem.RegisteredType);
+                        else if (sElem.IsSingleton)
+                            container.AddSingleton(sElem.RegisteredType, c => sElem.Factory());
+                        else
+                            container.AddTransient(sElem.RegisteredType, c => sElem.Factory());
+                        break;
+                    }
                     default:
-                        {
-                            container.AddTransient(elem.RegisteredType);
-                            break;
-                        }
+                    {
+                        container.AddTransient(elem.RegisteredType);
+                        break;
+                    }
                 }
             }
             container.AddSingleton<IResolverService>(new MicrosoftResolverService());
