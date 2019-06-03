@@ -145,7 +145,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
         public void TestSimpleRegisterWithFactory()
         {
             //Arrange
-            Dummy CreatFunc() => new Dummy();
+            Dummy CreatFunc(IResolverService resolver) => new Dummy();
             var reg = new DynamicRegistrantWithoutResolver(r => r.Register(CreatFunc));
 
             //Act
@@ -162,7 +162,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
         public void TestSimpleRegisterWithFactorySingleton()
         {
             //Arrange
-            Dummy CreatFunc() => new Dummy();
+            Dummy CreatFunc(IResolverService resolver) => new Dummy();
             var reg = new DynamicRegistrantWithoutResolver(r => r.Register(CreatFunc, true));
 
             //Act
@@ -179,7 +179,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
         public void TestImplementationRegisterWithFactory()
         {
             //Arrange
-            Dummy CreatFunc() => new Dummy();
+            Dummy CreatFunc(IResolverService resolver) => new Dummy();
             var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(factory: CreatFunc));
 
             //Act
@@ -198,7 +198,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
         public void TestImplementationRegisterWithFactorySingleton()
         {
             //Arrange
-            Dummy CreatFunc() => new Dummy();
+            Dummy CreatFunc(IResolverService resolver) => new Dummy();
             var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(factory: CreatFunc, isSingleton: true));
 
             //Act
@@ -218,7 +218,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
         {
             //Arrange
             const string NAME = "MyName";
-            Dummy CreatFunc() => new Dummy();
+            Dummy CreatFunc(IResolverService resolver) => new Dummy();
             var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(NAME, CreatFunc));
 
             //Act
@@ -238,7 +238,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
         {
             //Arrange
             const string NAME = "MyName";
-            Dummy CreatFunc() => new Dummy();
+            Dummy CreatFunc(IResolverService resolver) => new Dummy();
             var reg = new DynamicRegistrantWithoutResolver(r => r.Register<IDummy, Dummy>(NAME, CreatFunc, true));
 
             //Act

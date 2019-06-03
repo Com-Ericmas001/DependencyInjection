@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 using Com.Ericmas001.DependencyInjection.Tests.Models;
 using FluentAssertions;
 using Xunit;
@@ -56,7 +57,7 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
             //Arrange
             var container = new ContainerBuilder();
             const string DUMB_NAME = "DumbName";
-            DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
+            DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register(CreatFunc)).RegisterTypes(container);
             var scope = container.Build().BeginLifetimeScope();
 
@@ -73,7 +74,7 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
             //Arrange
             var container = new ContainerBuilder();
             const string DUMB_NAME = "DumbName";
-            DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
+            DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(factory: CreatFunc)).RegisterTypes(container);
             var scope = container.Build().BeginLifetimeScope();
 
@@ -91,7 +92,7 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
             var container = new ContainerBuilder();
             const string NAME = "MyName";
             const string DUMB_NAME = "DumbName";
-            DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
+            DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(NAME, CreatFunc)).RegisterTypes(container);
             var scope = container.Build().BeginLifetimeScope();
 

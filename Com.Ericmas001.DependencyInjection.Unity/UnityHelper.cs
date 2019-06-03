@@ -16,6 +16,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity
         }
         public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, IUnityContainer container)
         {
+            var resolver = new UnityResolverService(container);
             foreach (var elem in elements)
             {
                 switch (elem)
@@ -37,9 +38,9 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         else
                         {
                             if (string.IsNullOrEmpty(iElem.Name))
-                                container.RegisterFactory(iElem.RegisteredType, c => iElem.Factory(), iElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
+                                container.RegisterFactory(iElem.RegisteredType, c => iElem.Factory(resolver), iElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                             else
-                                container.RegisterFactory(iElem.RegisteredType, iElem.Name, c => iElem.Factory(), iElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
+                                container.RegisterFactory(iElem.RegisteredType, iElem.Name, c => iElem.Factory(resolver), iElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                         }
 
                         break;
@@ -49,7 +50,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                         if (sElem.Factory == null)
                             container.RegisterType(sElem.RegisteredType, sElem.IsSingleton ? (ITypeLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                         else
-                            container.RegisterFactory(sElem.RegisteredType, c => sElem.Factory(), sElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
+                            container.RegisterFactory(sElem.RegisteredType, c => sElem.Factory(resolver), sElem.IsSingleton ? (IFactoryLifetimeManager)new ContainerControlledLifetimeManager() : new TransientLifetimeManager());
                         break;
                     }
                     default:
@@ -59,7 +60,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity
                     }
                 }
             }
-            container.RegisterInstance<IResolverService>(new UnityResolverService(container));
+            container.RegisterInstance<IResolverService>(resolver);
         }
     }
 }

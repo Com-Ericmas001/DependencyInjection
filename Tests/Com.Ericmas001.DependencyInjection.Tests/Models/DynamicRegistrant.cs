@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
 using Com.Ericmas001.DependencyInjection.Registrants;
 using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
+using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 
 namespace Com.Ericmas001.DependencyInjection.Tests.Models
 {
@@ -36,13 +37,13 @@ namespace Com.Ericmas001.DependencyInjection.Tests.Models
             base.AddToRegistrant<T>();
         }
 
-        public new void Register<T>(Func<T> factory = null, bool isSingleton = false)
+        public new void Register<T>(Func<IResolverService, T> factory = null, bool isSingleton = false)
             where T : class
         {
             base.Register(factory, isSingleton);
         }
 
-        public new void Register<TInterface, TImplementation>(string name = null, Func<TImplementation> factory = null, bool isSingleton = false)
+        public new void Register<TInterface, TImplementation>(string name = null, Func<IResolverService, TImplementation> factory = null, bool isSingleton = false)
             where TImplementation : class, TInterface
         {
             base.Register<TInterface, TImplementation>(name, factory, isSingleton);

@@ -16,6 +16,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
         }
         public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, IServiceCollection container)
         {
+            var resolver = new MicrosoftResolverService();
             foreach (var elem in elements)
             {
                 switch (elem)
@@ -41,9 +42,9 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
                         {
                             if (string.IsNullOrEmpty(iElem.Name))
                                 if (iElem.IsSingleton)
-                                    container.AddSingleton(iElem.RegisteredType, c => iElem.Factory());
+                                    container.AddSingleton(iElem.RegisteredType, c => iElem.Factory(resolver));
                                 else
-                                    container.AddTransient(iElem.RegisteredType, c => iElem.Factory());
+                                    container.AddTransient(iElem.RegisteredType, c => iElem.Factory(resolver));
                             else
                                 throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
                         }
@@ -58,9 +59,9 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
                             else
                                 container.AddTransient(sElem.RegisteredType);
                         else if (sElem.IsSingleton)
-                            container.AddSingleton(sElem.RegisteredType, c => sElem.Factory());
+                            container.AddSingleton(sElem.RegisteredType, c => sElem.Factory(resolver));
                         else
-                            container.AddTransient(sElem.RegisteredType, c => sElem.Factory());
+                            container.AddTransient(sElem.RegisteredType, c => sElem.Factory(resolver));
                         break;
                     }
                     default:
@@ -70,7 +71,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
                     }
                 }
             }
-            container.AddSingleton<IResolverService>(new MicrosoftResolverService());
+            container.AddSingleton<IResolverService>(resolver);
         }
 
         public static void SetProvider(IServiceProvider provider)

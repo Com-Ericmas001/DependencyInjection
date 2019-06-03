@@ -15,6 +15,7 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
         }
         public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, ContainerBuilder container)
         {
+            var resolverService = new AutofacResolverService();
             foreach (var elem in elements)
             {
                 switch (elem)
@@ -42,13 +43,13 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
                         {
                             if (string.IsNullOrEmpty(iElem.Name))
                                 if (iElem.IsSingleton)
-                                    container.Register(c => iElem.Factory()).As(iElem.RegisteredType).SingleInstance();
+                                    container.Register(c => iElem.Factory(resolverService)).As(iElem.RegisteredType).SingleInstance();
                                 else
-                                    container.Register(c => iElem.Factory()).As(iElem.RegisteredType);
+                                    container.Register(c => iElem.Factory(resolverService)).As(iElem.RegisteredType);
                             else if (iElem.IsSingleton)
-                                container.Register(c => iElem.Factory()).Named(iElem.Name, iElem.RegisteredType).SingleInstance();
+                                container.Register(c => iElem.Factory(resolverService)).Named(iElem.Name, iElem.RegisteredType).SingleInstance();
                             else
-                                container.Register(c => iElem.Factory()).Named(iElem.Name, iElem.RegisteredType);
+                                container.Register(c => iElem.Factory(resolverService)).Named(iElem.Name, iElem.RegisteredType);
                         }
 
                         break;
@@ -61,9 +62,9 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
                             else
                                 container.RegisterType(sElem.RegisteredType);
                         else if (sElem.IsSingleton)
-                            container.Register(c => sElem.Factory()).As(sElem.RegisteredType).SingleInstance();
+                            container.Register(c => sElem.Factory(resolverService)).As(sElem.RegisteredType).SingleInstance();
                         else
-                            container.Register(c => sElem.Factory()).As(sElem.RegisteredType);
+                            container.Register(c => sElem.Factory(resolverService)).As(sElem.RegisteredType);
                         break;
                     }
                     default:
@@ -73,7 +74,7 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
                     }
                 }
             }
-            container.RegisterInstance<IResolverService>(new AutofacResolverService());
+            container.RegisterInstance<IResolverService>(resolverService);
         }
 
         public static void SetScopeToResolver(ILifetimeScope scope)

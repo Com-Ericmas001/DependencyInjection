@@ -1,4 +1,5 @@
-﻿using Com.Ericmas001.DependencyInjection.Tests.Models;
+﻿using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
+using Com.Ericmas001.DependencyInjection.Tests.Models;
 using FluentAssertions;
 using Unity;
 using Xunit;
@@ -53,7 +54,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             //Arrange
             var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
-            DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
+            DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register(CreatFunc)).RegisterTypes(container);
 
             //Act
@@ -69,7 +70,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             //Arrange
             var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
-            DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
+            DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(factory: CreatFunc)).RegisterTypes(container);
 
             //Act
@@ -86,7 +87,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             var container = new UnityContainer();
             const string NAME = "MyName";
             const string DUMB_NAME = "DumbName";
-            DummyWithName CreatFunc() => new DummyWithName(DUMB_NAME);
+            DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
             new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(NAME, CreatFunc)).RegisterTypes(container);
 
             //Act

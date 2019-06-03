@@ -37,13 +37,13 @@ namespace Com.Ericmas001.DependencyInjection.Registrants
             AddToRegistrant(new T());
         }
 
-        protected void Register<T>(Func<T> factory = null, bool isSingleton = false)
+        protected void Register<T>(Func<IResolverService, T> factory = null, bool isSingleton = false)
             where T : class
         {
             AddToRegistrant(new SimpleRegisteredElement(typeof(T)) { Factory = factory, IsSingleton = isSingleton });
         }
 
-        protected void Register<TInterface, TImplementation>(string name = null, Func<TImplementation> factory = null, bool isSingleton = false)
+        protected void Register<TInterface, TImplementation>(string name = null, Func<IResolverService, TImplementation> factory = null, bool isSingleton = false)
             where TImplementation : class, TInterface
         {
             AddToRegistrant(new ImplementationRegisteredElement(typeof(TInterface), typeof(TImplementation)) { Name = name, IsSingleton = isSingleton, Factory = factory });
