@@ -2,23 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <IncludeSymbols>True</IncludeSymbols>
-    <IncludeSource>True</IncludeSource>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Authors>Ericmas001</Authors>
-    <Company />
-    <Description>Com.Ericmas001.DependencyInjection</Description>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/Com-Ericmas001/DependencyInjection</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/Com-Ericmas001/Common/raw/master/Resources/lib.png</PackageIconUrl>
-    <RepositoryUrl>https://github.com/Com-Ericmas001/DependencyInjection</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageReleaseNotes>Development Version</PackageReleaseNotes>
-    <NeutralLanguage>en</NeutralLanguage>
     <Version>5.0.0</Version>
-    <PackageTags>dependencyinjection</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Ericmas001</Authors>
+    <Description>Com.Ericmas001.DependencyInjection</Description>
+    <Copyright>Ericmas001</Copyright>
+    <PackageReleaseNotes>Development Version</PackageReleaseNotes>
+    <PackageIconUrl>https://github.com/Com-Ericmas001/Common/raw/master/Resources/lib.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/Com-Ericmas001/DependencyInjection</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/Com-Ericmas001/DependencyInjection/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
 </Project>
