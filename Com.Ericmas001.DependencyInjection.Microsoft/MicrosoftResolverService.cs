@@ -13,9 +13,19 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
             return Provider.GetService<T>();
         }
 
+        public T Resolve<T>(string name)
+        {
+            throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
+        }
+
         public object Resolve(Type t)
         {
             return Provider.GetService(t);
+        }
+
+        public object Resolve(Type t, string name)
+        {
+            throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
         }
     }
 }

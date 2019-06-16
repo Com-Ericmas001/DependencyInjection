@@ -13,9 +13,19 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
             return Scope.Resolve<T>();
         }
 
+        public T Resolve<T>(string name)
+        {
+            return Scope.ResolveNamed<T>(name);
+        }
+
         public object Resolve(Type t)
         {
             return Scope.Resolve(t);
+        }
+
+        public object Resolve(Type t, string name)
+        {
+            return Scope.ResolveNamed(name, t);
         }
     }
 }
