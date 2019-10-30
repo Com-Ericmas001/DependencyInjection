@@ -10,13 +10,12 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
 {
     public static class UnityHelper
     {
-        public static void RegisterTypes(this IRegistrant registrant, IServiceCollection container)
+        public static void RegisterTypes(this IRegistrant registrant, IServiceCollection container, IResolverService resolver)
         {
-            registrant.GetRegisteredTypeAssociation().RegisterTypes(container);
+            registrant.GetRegisteredTypeAssociation().RegisterTypes(container, resolver);
         }
-        public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, IServiceCollection container)
+        public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, IServiceCollection container, IResolverService resolver)
         {
-            var resolver = new MicrosoftResolverService();
             foreach (var elem in elements)
             {
                 switch (elem)
@@ -71,12 +70,6 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
                     }
                 }
             }
-            container.AddSingleton<IResolverService>(resolver);
-        }
-
-        public static void SetProvider(IServiceProvider provider)
-        {
-            ((MicrosoftResolverService)provider.GetService<IResolverService>()).Provider = provider;
         }
     }
 }

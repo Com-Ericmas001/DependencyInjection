@@ -13,7 +13,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
         {
             //Arrange
             IServiceCollection container = new ServiceCollection();
-            new DynamicRegistrant(r => r.Register<Dummy>()).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<Dummy>()).RegisterTypes(container, null);
             var provider = container.BuildServiceProvider();
 
             //Act
@@ -27,7 +27,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
         {
             //Arrange
             IServiceCollection container = new ServiceCollection();
-            new DynamicRegistrant(r => r.Register<IDummy, Dummy>()).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<IDummy, Dummy>()).RegisterTypes(container, null);
             var provider = container.BuildServiceProvider();
 
             //Act
@@ -43,7 +43,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
             IServiceCollection container = new ServiceCollection();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
-            new DynamicRegistrant(r => r.Register(CreatFunc)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register(CreatFunc)).RegisterTypes(container, null);
             var provider = container.BuildServiceProvider();
 
             //Act
@@ -60,7 +60,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
             IServiceCollection container = new ServiceCollection();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
-            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(factory: CreatFunc)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(factory: CreatFunc)).RegisterTypes(container, null);
             var provider = container.BuildServiceProvider();
 
             //Act
@@ -76,7 +76,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
             //Arrange
             IServiceCollection container = new ServiceCollection();
             Dummy instance = new Dummy();
-            new DynamicRegistrant(r => r.RegisterInstance(instance)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.RegisterInstance(instance)).RegisterTypes(container, null);
             var provider = container.BuildServiceProvider();
 
             //Act
@@ -91,7 +91,7 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft.Tests
             //Arrange
             IServiceCollection container = new ServiceCollection();
             Dummy instance = new Dummy();
-            new DynamicRegistrant(r => r.RegisterInstance<IDummy>(instance)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.RegisterInstance<IDummy>(instance)).RegisterTypes(container, null);
             var provider = container.BuildServiceProvider();
 
             //Act

@@ -11,7 +11,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
     public class AbstractRegistrantTests
     {
         [Fact]
-        public void TestEmptyContainsOnlyResolver()
+        public void TestEmptyContainsNothing()
         {
             //Arrange
             var reg = new DynamicRegistrant(r => { });
@@ -20,8 +20,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             var res = reg.GetRegisteredTypeAssociation().ToArray();
 
             //Assert
-            res.Should().AllBeOfType<ImplementationRegisteredElement>().And.HaveCount(1);
-            res.Single().RegisteredType.Should().Be<IResolverService>();
+            res.Should().BeEmpty();
         }
         [Fact]
         public void TestEmptyIsEmpty()

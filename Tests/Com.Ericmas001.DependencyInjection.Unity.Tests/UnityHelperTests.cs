@@ -13,7 +13,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         {
             //Arrange
             var container = new UnityContainer();
-            new DynamicRegistrant(r => r.Register<Dummy>()).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<Dummy>()).RegisterTypes(container, null);
 
             //Act
             var res = container.Resolve<Dummy>();
@@ -26,7 +26,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         {
             //Arrange
             var container = new UnityContainer();
-            new DynamicRegistrant(r => r.Register<IDummy, Dummy>()).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<IDummy, Dummy>()).RegisterTypes(container, null);
 
             //Act
             var res = container.Resolve<IDummy>();
@@ -40,7 +40,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             //Arrange
             var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
-            new DynamicRegistrant(r => r.Register<IDummy, Dummy>(DUMB_NAME)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<IDummy, Dummy>(DUMB_NAME)).RegisterTypes(container, null);
 
             //Act
             var res = container.Resolve<IDummy>(DUMB_NAME);
@@ -55,7 +55,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
-            new DynamicRegistrant(r => r.Register(CreatFunc)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register(CreatFunc)).RegisterTypes(container, null);
 
             //Act
             var res = container.Resolve<DummyWithName>();
@@ -71,7 +71,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             var container = new UnityContainer();
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
-            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(factory: CreatFunc)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(factory: CreatFunc)).RegisterTypes(container, null);
 
             //Act
             var res = container.Resolve<IDummy>();
@@ -88,7 +88,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             const string NAME = "MyName";
             const string DUMB_NAME = "DumbName";
             DummyWithName CreatFunc(IResolverService resolver) => new DummyWithName(DUMB_NAME);
-            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(NAME, CreatFunc)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.Register<IDummy, DummyWithName>(NAME, CreatFunc)).RegisterTypes(container, null);
 
             //Act
             var res = container.Resolve<IDummy>(NAME);
@@ -103,7 +103,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             //Arrange
             var container = new UnityContainer();
             Dummy instance = new Dummy();
-            new DynamicRegistrant(r => r.RegisterInstance(instance)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.RegisterInstance(instance)).RegisterTypes(container, null);
 
             //Act
             var res = container.Resolve<Dummy>();
@@ -117,7 +117,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
             //Arrange
             var container = new UnityContainer();
             Dummy instance = new Dummy();
-            new DynamicRegistrant(r => r.RegisterInstance<IDummy>(instance)).RegisterTypes(container);
+            new DynamicRegistrant(r => r.RegisterInstance<IDummy>(instance)).RegisterTypes(container, null);
 
             //Act
             var res = container.Resolve<IDummy>();

@@ -9,13 +9,12 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
 {
     public static class UnityHelper
     {
-        public static void RegisterTypes(this IRegistrant registrant, ContainerBuilder container)
+        public static void RegisterTypes(this IRegistrant registrant, ContainerBuilder container, IResolverService resolverService)
         {
-            registrant.GetRegisteredTypeAssociation().RegisterTypes(container);
+            registrant.GetRegisteredTypeAssociation().RegisterTypes(container, resolverService);
         }
-        public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, ContainerBuilder container)
+        public static void RegisterTypes(this IEnumerable<IRegisteredElement> elements, ContainerBuilder container, IResolverService resolverService)
         {
-            var resolverService = new AutofacResolverService();
             foreach (var elem in elements)
             {
                 switch (elem)
@@ -74,12 +73,6 @@ namespace Com.Ericmas001.DependencyInjection.Autofac
                     }
                 }
             }
-            container.RegisterInstance<IResolverService>(resolverService);
-        }
-
-        public static void SetScopeToResolver(ILifetimeScope scope)
-        {
-            ((AutofacResolverService)scope.Resolve<IResolverService>()).Scope = scope;
         }
     }
 }
