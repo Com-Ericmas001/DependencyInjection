@@ -13,3 +13,6 @@
 
 [![NuGet](https://img.shields.io/badge/package-Com.Ericmas001.DependencyInjection.Unity-blue.svg)](https://www.nuget.org/packages/Com.Ericmas001.DependencyInjection.Unity) [![NuGet](https://img.shields.io/nuget/v/Com.Ericmas001.DependencyInjection.Unity.svg)](https://www.nuget.org/packages/Com.Ericmas001.DependencyInjection.Unity)
 [![NuGet](https://img.shields.io/nuget/dt/Com.Ericmas001.DependencyInjection.Unity.svg?style=social)](https://www.nuget.org/packages/Com.Ericmas001.DependencyInjection.Unity)
+
+[![NuGet](https://img.shields.io/badge/package-Com.Ericmas001.DependencyInjection.WebJobs.ContextResolver-blue.svg)](https://www.nuget.org/packages/Com.Ericmas001.DependencyInjection.WebJobs.ContextResolver) [![NuGet](https://img.shields.io/nuget/v/Com.Ericmas001.DependencyInjection.WebJobs.ContextResolver.svg)](https://www.nuget.org/packages/Com.Ericmas001.DependencyInjection.WebJobs.ContextResolver)
+[![NuGet](https://img.shields.io/nuget/dt/Com.Ericmas001.DependencyInjection.WebJobs.ContextResolver.svg?style=social)](https://www.nuget.org/packages/Com.Ericmas001.DependencyInjection.WebJobs.ContextResolver)

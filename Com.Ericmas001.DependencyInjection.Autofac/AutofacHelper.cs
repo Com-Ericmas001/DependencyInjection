@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using Autofac;
+﻿using Autofac;
 using Com.Ericmas001.DependencyInjection.RegisteredElements;
 using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
 using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
 using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
+using System.Collections.Generic;
 
 namespace Com.Ericmas001.DependencyInjection.Autofac
 {
-    public static class UnityHelper
+    public static class AutofacHelper
     {
         public static void RegisterTypes(this IRegistrant registrant, ContainerBuilder container, IResolverService resolverService)
         {

@@ -7,7 +7,7 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
 {
     public class UnityResolverServiceTest
     {
-        private const string NAME = "SpongeBob";
+        private const string Name = "SpongeBob";
         [Fact]
         public void TestGenericResolve()
         {
@@ -41,11 +41,11 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         {
             //Arrange
             var container = new UnityContainer();
-            container.RegisterType<IDummy, Dummy>(NAME);
+            container.RegisterType<IDummy, Dummy>(Name);
             var resolver = new UnityResolverService(container);
 
             //Act
-            var res = resolver.Resolve<IDummy>(NAME);
+            var res = resolver.Resolve<IDummy>(Name);
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -55,11 +55,11 @@ namespace Com.Ericmas001.DependencyInjection.Unity.Tests
         {
             //Arrange
             var container = new UnityContainer();
-            container.RegisterType<IDummy, Dummy>(NAME);
+            container.RegisterType<IDummy, Dummy>(Name);
             var resolver = new UnityResolverService(container);
 
             //Act
-            var res = resolver.Resolve(typeof(IDummy), NAME);
+            var res = resolver.Resolve(typeof(IDummy), Name);
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
