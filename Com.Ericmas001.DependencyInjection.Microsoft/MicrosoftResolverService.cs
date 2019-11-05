@@ -15,7 +15,10 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
 
         public T Resolve<T>(string name)
         {
-            throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
+            throw new NotSupportedException($"Naming resolving are not supported. {typeof(T).FullName}({name}) -> [FACTORY]")
+            {
+                HelpLink = "https://github.com/aspnet/DependencyInjection/issues/473"
+            };
         }
 
         public object Resolve(Type t)
@@ -25,7 +28,10 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
 
         public object Resolve(Type t, string name)
         {
-            throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
+            throw new NotSupportedException($"Naming resolving are not supported. {t.FullName}({name}) -> [FACTORY]")
+            {
+                HelpLink = "https://github.com/aspnet/DependencyInjection/issues/473"
+            };
         }
     }
 }

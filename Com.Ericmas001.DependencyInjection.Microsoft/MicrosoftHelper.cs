@@ -1,10 +1,10 @@
-﻿using Com.Ericmas001.DependencyInjection.RegisteredElements;
+﻿using System;
+using System.Collections.Generic;
+using Com.Ericmas001.DependencyInjection.RegisteredElements;
 using Com.Ericmas001.DependencyInjection.RegisteredElements.Interface;
 using Com.Ericmas001.DependencyInjection.Registrants.Interfaces;
 using Com.Ericmas001.DependencyInjection.Resolvers.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 
 namespace Com.Ericmas001.DependencyInjection.Microsoft
 {
@@ -35,7 +35,10 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
                                 else
                                     container.AddTransient(iElem.RegisteredType, iElem.ImplementationType);
                             else
-                                throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
+                                throw new NotSupportedException($"Naming registrations are not supported. {iElem.RegisteredType.FullName}({iElem.Name}) -> {iElem.ImplementationType.FullName}")
+                                {
+                                    HelpLink = "https://github.com/aspnet/DependencyInjection/issues/473"
+                                };
                         }
                         else
                         {
@@ -45,7 +48,10 @@ namespace Com.Ericmas001.DependencyInjection.Microsoft
                                 else
                                     container.AddTransient(iElem.RegisteredType, c => iElem.Factory(resolver));
                             else
-                                throw new NotImplementedException("https://github.com/aspnet/DependencyInjection/issues/473");
+                                throw new NotSupportedException($"Naming registrations are not supported. {iElem.RegisteredType.FullName}({iElem.Name}) -> [FACTORY]")
+                                {
+                                    HelpLink = "https://github.com/aspnet/DependencyInjection/issues/473"
+                                };
                         }
 
                         break;

@@ -7,7 +7,7 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
 {
     public class AutofacResolverServiceTest
     {
-        private const string Name = "SpongeBob";
+        private const string NAME = "SpongeBob";
         [Fact]
         public void TestGenericResolve()
         {
@@ -43,12 +43,12 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         {
             //Arrange
             var container = new ContainerBuilder();
-            container.RegisterType<Dummy>().Named<IDummy>(Name);
+            container.RegisterType<Dummy>().Named<IDummy>(NAME);
             var scope = container.Build().BeginLifetimeScope();
             var resolver = new AutofacResolverService() { Scope = scope };
 
             //Act
-            var res = resolver.Resolve<IDummy>(Name);
+            var res = resolver.Resolve<IDummy>(NAME);
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();
@@ -58,12 +58,12 @@ namespace Com.Ericmas001.DependencyInjection.Autofac.Tests
         {
             //Arrange
             var container = new ContainerBuilder();
-            container.RegisterType<Dummy>().Named<IDummy>(Name);
+            container.RegisterType<Dummy>().Named<IDummy>(NAME);
             var scope = container.Build().BeginLifetimeScope();
             var resolver = new AutofacResolverService() { Scope = scope };
 
             //Act
-            var res = resolver.Resolve(typeof(IDummy), Name);
+            var res = resolver.Resolve(typeof(IDummy), NAME);
 
             //Assert
             res.Should().NotBeNull().And.BeOfType<Dummy>();

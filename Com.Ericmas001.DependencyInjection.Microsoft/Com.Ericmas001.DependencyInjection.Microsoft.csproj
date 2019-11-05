@@ -3,19 +3,22 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.1.0</Version>
+    <Version>6.1.1</Version>
     <Authors>Ericmas001</Authors>
     <Description>Com.Ericmas001.DependencyInjection.Microsoft</Description>
     <Copyright>Ericmas001</Copyright>
     <PackageReleaseNotes>Development Version</PackageReleaseNotes>
-    <PackageIconUrl>https://github.com/Com-Ericmas001/Common/raw/master/Resources/lib.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageProjectUrl>https://github.com/Com-Ericmas001/DependencyInjection</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/Com-Ericmas001/DependencyInjection/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <None Include="_Nuget\icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
