@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.1.0</Version>
+    <Version>6.1.1</Version>
     <Authors>Ericmas001</Authors>
     <Description>Com.Ericmas001.DependencyInjection.Autofac</Description>
     <Copyright>Ericmas001</Copyright>
@@ -15,7 +15,7 @@
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.2" />
+    <PackageReference Include="Autofac" Version="4.2.1" />
   </ItemGroup>
 
   <ItemGroup>
