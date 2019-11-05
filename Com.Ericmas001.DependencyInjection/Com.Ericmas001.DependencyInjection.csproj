@@ -3,12 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.1.1</Version>
+    <Version>6.1.2</Version>
     <Authors>Ericmas001</Authors>
     <Description>Com.Ericmas001.DependencyInjection</Description>
     <Copyright>Ericmas001</Copyright>
     <PackageReleaseNotes>Development Version</PackageReleaseNotes>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/Com-Ericmas001/Common/raw/master/Resources/lib.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/Com-Ericmas001/DependencyInjection</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
