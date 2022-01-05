@@ -43,6 +43,11 @@ namespace Com.Ericmas001.DependencyInjection.Tests.Models
             base.Register(factory, isSingleton);
         }
 
+        public new void Register(Type t, bool isSingleton = false)
+        {
+            base.Register(t, isSingleton);
+        }
+
         public new void Register<TInterface, TImplementation>(string name = null, Func<IResolverService, TImplementation> factory = null, bool isSingleton = false)
             where TImplementation : class, TInterface
         {

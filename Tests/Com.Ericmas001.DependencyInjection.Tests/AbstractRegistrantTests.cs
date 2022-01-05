@@ -362,7 +362,7 @@ namespace Com.Ericmas001.DependencyInjection.Tests
             //Arrange
             var reg = new DynamicRegistrantWithoutResolver(r =>
             {
-                r.Register<Dummy>();
+                r.Register(typeof(Dummy));
                 r.AddToRegistrant<BetterDummyRegistrant>();
             });
 
