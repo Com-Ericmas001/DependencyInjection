@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>6.1.2</Version>
+    <Version>6.1.3</Version>
     <Authors>Ericmas001</Authors>
     <Description>Com.Ericmas001.DependencyInjection.Microsoft</Description>
     <Copyright>Ericmas001</Copyright>
